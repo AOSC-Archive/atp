@@ -9,11 +9,10 @@
 	<script src="../js/jquery.js"></script>
 	<script type="text/javascript">
 		function up_site(){
-			alert("点击确定开始更新...");
+			$("#up_site_info").addClass("alert alert-info");
 			$("#up_site_info").html('正在更新，请勿操作本页面，请稍后...');
 			$.post('./load_package.php',{},
 					function(info){
-				alert(info);
 				$("#up_site_info").html("更新完毕！");
 			});
 		}
@@ -57,10 +56,11 @@
 </head>
 <body>
 	<div class="col-md-10 col-md-offset-1">
-		<h1>安同软件包平台后台管理</h1><a href="../index.html">进入网站</a>
+		<h1>安同软件包平台后台管理</h1>
+		<a class="btn btn-primary btn-lg" href="../index.html">进入网站</a>
 		<button class="btn btn-primary btn-lg" onclick="up_site()">开始更新网站</button><small id="up_site_info"></small>
 		<div class="form-inline">
-		<h3>数据库信息设置：<small id="db_info">数据库连接信息检测中...</small></h3>
+		<h3>数据库信息设置：<small id="db_info" class="alert alert-info">数据库连接信息检测中...</small></h3>
 			<input type="text" id="db_url" class="form-control" placeholder="数据库地址" />
 			<input type="text" id="db_user" class="form-control" placeholder="数据库用户名" />
 			<input type="password" id="db_passwd" class="form-control" placeholder="数据库密码" />
