@@ -29,23 +29,23 @@
 			});
 		}
 		function up_db_info(bt){
-			alert('开始提交数据...');
+			$("#db_info").html('开始提交数据...');
 			$.post('./up_db_info.php',{
 				db_url: $("#db_url").val(),
 				db_user: $("#db_user").val(),
 				db_passwd: $("#db_passwd").val(),
 				db_name: $("#db_name").val()
 			},function(){
-				alert('数据提交完毕...');
+				$("#db_info").html('数据提交完毕...');
 				check_db();
 			});
 		}
 		function up_mi_url(){
-			alert('开始提交数据...');
+			$("#mi_info").html('开始提交数据...');
 			$.post('./up_mi_url.php',{
 				mi_url: $("#mi_url").val()
 			},function(){
-				alert('数据提交完毕...');
+				$("#mi_info").html('数据提交完毕...');
 			});
 		}
 		$(document).ready(function(){
@@ -57,10 +57,11 @@
 <body>
 	<div class="col-md-10 col-md-offset-1">
 		<h1>安同软件包平台后台管理</h1>
-		<a class="btn btn-primary btn-lg" href="../index.html">进入网站</a>
-		<button class="btn btn-primary btn-lg" onclick="up_site()">开始更新网站</button><small id="up_site_info"></small>
+		<button class="btn btn-primary" onclick="up_site()">开始更新网站</button>
+		<a class="btn btn-primary" href="../index.html">进入网站</a>
+		<div id="up_site_info" class="alert alert-info">点击"开始更新网站"来对网站进行更新...</div>
 		<div class="form-inline">
-		<h3>数据库信息设置：<small id="db_info" class="alert alert-info">数据库连接信息检测中...</small></h3>
+		<p id="db_info" class="alert alert-info">数据库连接信息检测中...</p>
 			<input type="text" id="db_url" class="form-control" placeholder="数据库地址" />
 			<input type="text" id="db_user" class="form-control" placeholder="数据库用户名" />
 			<input type="password" id="db_passwd" class="form-control" placeholder="数据库密码" />
@@ -69,7 +70,8 @@
 		</div>
 		<div>
 			<h3>仓库路径设置：</h3>
-			<textarea id="mi_url" class="form-control" rows="10">路径信息加载中...</textarea>
+			<div id="mi_info" class="alert alert-info">数据库路径为Packages文件的绝对路径，每行一个，请输入，点击确定进行提交...</div>
+			<textarea id="mi_url" class="form-control" rows="6">路径信息加载中...</textarea>
 			<button class="btn btn-primary" onclick="up_mi_url()">确定</button>
 		</div>
 	</div>
