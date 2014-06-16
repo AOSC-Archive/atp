@@ -117,7 +117,7 @@ for($i=0;$i<$sum_mi;++$i){
 			$db->query('insert into a'.$i.' values(\''.$p_package.'\')');
 			++$num_pa;
 			$str=trim(fgets($package_file));
-			$mi_str=$mi_str."<a href='./".$mi_name[$i]."/$p_package.html'><h3>$p_package</h3></a>";
+			$mi_str=$mi_str."<li class='list-group-item'><a href='./".$mi_name[$i]."/$p_package.html'>$p_package</a></li>";
 			$pa_file=file_get_contents('./pa_temp');
 			$pa_file=str_replace('this is the se_mi', $se_mi, $pa_file);
 			$pa_file=str_replace('this is the nav', "<h2>$p_package</h2><table class='table table-striped'><tr><td>版本号</td><td>$p_ver</td><tr><td>架构</td><td>$p_archi</td><tr><td>维护者</td><td>$p_main</td><tr><td>安装后大小</td><td>$p_in_size</td><tr><td>依赖</td><td>$p_depend</td><tr><td>点击下载</td><td><a href='$p_dlurl'>下载</a></p><p>大小:$p_size</td><tr><td>MD5值</td><td>$p_md5</td><tr><td>SHA1值</td><td>$p_sha1</td><tr><td>SHA256值</td><td>$p_sha256</td><tr><td>类别</td><td>$p_sec</td><tr><td>说明</td><td>$p_des</td><tr><td>替代</td><td>$p_rep</td></table>", $pa_file);
@@ -125,17 +125,17 @@ for($i=0;$i<$sum_mi;++$i){
 		}
 	}
 	$mi_file=file_get_contents('./mi_temp');
-	$mi_file=str_replace('this is the nav', $mi_str, $mi_file);
+	$mi_file=str_replace('this is the nav', '<ul class="list-group">'.$mi_str.'</ul>', $mi_file);
 	$mi_file=str_replace('this is the se_mi', $se_mi, $mi_file);
 	file_put_contents('../pa/'.$mi_name[$i].'.html', $mi_file);
 	$mi_str='';
-	$se_nav=$se_nav.'<li><a href="./pa/'.$mi_name[$i].'.html"><span class="badge pull-right">'.$num_pa.'</span>'.$mi_name[$i].'</a></li>';
+	$se_nav=$se_nav.'<li class="list-group-item"><a href="./pa/'.$mi_name[$i].'.html"><span class="badge pull-right">'.$num_pa.'</span>'.$mi_name[$i].'</a></li>';
 	$num_pa=0;
 	fclose($package_file);
 }
 $index_file=file_get_contents('./index_temp');
 $index_file=str_replace('this is the se_mi', $se_mi, $index_file);
-$index_file=str_replace('this is the nav', '<ul class="nav nav-pills nav-stacked">'.$se_nav.'</ul>', $index_file);
+$index_file=str_replace('this is the nav', '<ul class="list-group">'.$se_nav.'</ul>', $index_file);
 file_put_contents('../index.html', $index_file);
 echo "网站更新完毕";
 ?>
