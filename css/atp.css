@@ -1,7 +1,5 @@
 body {
-	background-image: url(../image/bj.jpg);
-	background-repeat: no-repeat;
-	background-size: 100%;
+	background-image: url(../image/bj.gif);
 }
 h1 {
 	padding-top: 0.5em;
@@ -11,8 +9,6 @@ h1 {
 .form-inline {
 	box-shadow: 0 0 3px #00f5ff;
 	padding: 0.5em;
-	margin-bottom: 1em;
-	margin-top: 1em;
 }
 #search_result {
 	background: #fff;
@@ -20,4 +16,13 @@ h1 {
 	padding: 0.5em;
 	position: absolute;
 	z-index: 1;
+}
+
+#up_site_info {
+	margin-top: 1em;
+}
+
+.list-group {
+	margin-top: 0.5em;
+	font-size: 2em;
 }
